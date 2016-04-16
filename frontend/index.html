@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    
+    <script src="./js/index.js" defer></script>
+  </head>
+  <body>
+    <div class="instructions">
+      <h1>Simple messenger</h1>
+      <h5>Here you can contact your pals with real-time messages</h5>
+    </div>
+    
+    <div class="panel panel-success chat-window">
+      <div class="panel-heading">
+        <h3 class="panel-title">Messages</h3>
+      </div>
+      <div class="panel-body all-comments">
+        <ul id="messages"></ul>
+      </div>
+      
+      <form class="chat-message-form" action="">
+        <div class="input-group">
+          <input type="text" class="form-control message-value" placeholder="Write something...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+        </div>
+      </form>
+    </div>
+    
+    <div class="login-component" hidden>
+      <ul class="nav nav-tabs">
+        <li id="list-sign" role="presentation" class="active"><a href="#">Sign in</a></li>
+        <li id="list-register" role="presentation"><a href="#">Register</a></li>
+      </ul>
+      <form id="sign" class="form-signin">
+        <h5 id="sign-header" class="form-signin-heading">Please sign in</h5>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" aria-describedby="basic-addon1" required="">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <button id="submit" class="btn btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+    </div>
+  </body>
+</html>

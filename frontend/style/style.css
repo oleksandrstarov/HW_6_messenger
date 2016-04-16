@@ -1,0 +1,97 @@
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+}
+
+body {
+    background-color: lightgary;
+    font-family: Comic Sans, Comic Sans MS, cursive, tahoma;
+    margin: 15px;
+    height: 100%;
+
+    position: relative;
+}
+
+
+
+h1{
+    font-size: 200%;
+}
+
+.chat-message-form{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.input-group { 
+    padding: 3px;
+    bottom: 0;
+    width: 100%;
+}
+
+#messages { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+}
+
+#messages li { 
+    padding: 5px 10px; 
+}
+
+#messages li:nth-child(odd) { 
+    background: #eee;
+}
+
+
+
+.chat-window{
+    position: absolute;
+    width: 25%;
+    top: 60px;
+    bottom: 10px;
+    min-width: 100px;
+    min-height: 220px;
+}
+.all-comments{
+    overflow-y: auto;
+    height: 90%;
+}
+
+.panel{
+    border-color: #337ab7;
+}
+
+.instructions{
+    width: 65%;
+}
+
+
+.panel-success>.panel-heading{
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+
+.login-component{
+    position: absolute;
+    float:right;
+    right: 5px;
+    top: 10px;
+    width: 250px;
+    height: 225px;
+    border: 1px solid #337ab7;
+    padding:15px 15px 15px 15px;
+    border-radius: 4px;
+}
+
+.btn-block{
+    margin-top: 10px;
+}
