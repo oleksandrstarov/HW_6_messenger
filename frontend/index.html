@@ -7,7 +7,12 @@
         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/style.css">
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="./js/ajaxUtils.js" defer></script>
     
+    <script src="./js/appRenderer.js" defer></script>
+    <script src="./js/messenger.js" defer></script>
+    <script src="./js/loginRenderer.js" defer></script>
+    <script src="./js/loginHandler.js" defer></script>
     <script src="./js/index.js" defer></script>
   </head>
   <body>
@@ -24,8 +29,8 @@
         <ul id="messages"></ul>
       </div>
       
-      <form class="chat-message-form" action="">
-        <div class="input-group">
+      <form class="chat-message-form" action="" hidden>
+        <div class="input-group" >
           <input type="text" class="form-control message-value" placeholder="Write something...">
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit">Go!</button>
@@ -34,17 +39,27 @@
       </form>
     </div>
     
-    <div class="login-component" hidden>
+    <div class="login-component" >
       <ul class="nav nav-tabs">
         <li id="list-sign" role="presentation" class="active"><a href="#">Sign in</a></li>
         <li id="list-register" role="presentation"><a href="#">Register</a></li>
       </ul>
-      <form id="sign" class="form-signin">
+      <form id="sign" class="form-signin" onsubmit="return false">
         <h5 id="sign-header" class="form-signin-heading">Please sign in</h5>
         <input type="text" id="inputUsername" class="form-control" placeholder="Username" aria-describedby="basic-addon1" required="">
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
         <button id="submit" class="btn btn-primary btn-block" type="submit">Sign in</button>
       </form>
     </div>
+    <div class="users-info">
+    </div>
+    
+    <script id="message-template" type="text/template">
+      <li>
+        <p class="user-name">{{userName}}</p>
+        <span class="time-stamp">{{timeStamp}}</span>
+        <p class="message-content">{{messageContent}}</p>
+      </li>
+    </script>
   </body>
 </html>

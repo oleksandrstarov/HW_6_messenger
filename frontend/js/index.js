@@ -1,37 +1,26 @@
 'use strict';
 
 
-var socket = new io(); //from https://cdn.socket.io/socket.io-1.2.0.js
+(function(global){
+    var application={};
+    global.$application = application;
+     
+    application.appRenderer = new AppRenderer();
+    application.messenger = new Messenger();
+    application.user = 'dummy user';
+    application.loginHandlerer = new RegistrationHandler();
+    application.messenger.loadMessages();
+    application.messenger.getUsersData();
+    
+    //todo == process login
+    // load not all comments...
+    //console.log()
+    
+    document.addEventListener('userLogin', function(event){
+        application.user = event.detail;
+        application.loginHandlerer.userForm.userLoginSucess(event.detail);
+        application.appRenderer.enableComments();
+        application.messenger.socket.emit('user login', {user:event.detail});
+    });
+})(window);
 
-
-var messageForm = document.querySelector('.chat-message-form');
-var messageField = document.querySelector('.message-value');
-
-messageForm.addEventListener('submit', addMessage);
-
-
-
-
-socket.on('chat message', function(msg){
-    console.log('test');
-    var messagesList = document.querySelector('#messages');
-    messagesList.innerHTML += '<li>' + msg + '</li>';
-    console.log('test');
-    var element = document.querySelector('.all-comments');
-    element.scrollTop = element.scrollHeight;
-    console.log('test');
-});
-
-
-
-function addMessage(event){
-    event.preventDefault();
-     console.log(messageField);
-    if(messageField.value !== ''){
-        console.log(messageField.value);
-       
-        socket.emit('chat message', messageField.value);
-        messageField.value = '';
-    }
-    return false;
-}
