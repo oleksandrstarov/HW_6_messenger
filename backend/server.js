@@ -29,8 +29,12 @@ app.post('/login', function(req, res){
 });
 
 app.get('/getMessages', function(req, res){
+ 
     findMessages(function(result){
-        res.send(result);
+       setTimeout(function() {
+         res.send(result);
+       }, 2000);
+        
     });
 });
 
@@ -38,10 +42,15 @@ app.get('/getUsers', function(req, res){
     res.send(null);
 });
 
+var clients =[];
 
 io.sockets.on('connection', function(socket){
-
-  io.emit('user connected', {user:'guest'});
+  if(!socket.userName){
+    socket.userName = 'Guest';
+  }
+  clients.push(socket.userName);
+  
+  io.emit('live users', {liveUsers:clients});
   
   socket.on('chat message', function(messageObject){
    
@@ -52,12 +61,25 @@ io.sockets.on('connection', function(socket){
   });
   
   socket.on('disconnect', function(){
-    console.log(socket.id);
-    io.emit('user disconected', {user:'some'});
+    var index = clients.indexOf(socket.userName);     
+    if(index > -1){
+      clients.splice(index, 1);
+    }
+    io.emit('live users', {liveUsers:clients});
+  });
+  
+   socket.on('typing', function(userData){
+    io.emit('typing', userData);
   });
   
   socket.on('user login', function(userData){
-    io.emit('user login', userData);
+    var index = clients.indexOf(socket.userName);
+    if(index > -1){
+      clients[index] = userData.user;
+    }
+    socket.userName = userData.user;
+    
+    io.emit('live users', {liveUsers:clients});
   });
 });
 

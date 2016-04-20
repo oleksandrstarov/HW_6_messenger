@@ -61,6 +61,5 @@ RegistrationHandler.prototype.processSubmitRespond = function(responseData){
 };
 
 RegistrationHandler.prototype.sendLoginRequest = function(data){
-    console.log(data);
     $ajaxUtils.sendPostRequest('/login', this.processSubmitRespond, JSON.stringify(data));
 };

@@ -28,7 +28,7 @@
       <div class="panel-body all-comments">
         <ul id="messages"></ul>
       </div>
-      
+      <div class="notification-text"></div>
       <form class="chat-message-form" action="" hidden>
         <div class="input-group" >
           <input type="text" class="form-control message-value" placeholder="Write something...">
@@ -51,15 +51,31 @@
         <button id="submit" class="btn btn-primary btn-block" type="submit">Sign in</button>
       </form>
     </div>
-    <div class="users-info">
+    
+    
+    <div class="panel panel-success connected-users-panel">
+      <div class="panel-heading">
+        <h3 class="panel-title live-count">Currently live<span id="live-count"></span></h3>
+      </div>
+      <div class="panel-body">
+        <ul id="connected-users" class="users-list"></ul>
+      </div>
     </div>
     
     <script id="message-template" type="text/template">
       <li>
-        <p class="user-name">{{userName}}</p>
+        <p class="user-name {{currentUser}}"  owner="{{owner}}">{{userName}}</p>
         <span class="time-stamp">{{timeStamp}}</span>
         <p class="message-content">{{messageContent}}</p>
       </li>
+    </script>
+    <script id="load-animation" type="text/template">
+      <div class="text-center load-animation">
+        <img src="img/ajax-loader.gif">
+      </div>
+    </script>
+     <script id="live-user-template" type="text/template">
+      <li class="live-user-name" {{liveUser}}>{{userName}}</li>
     </script>
   </body>
 </html>

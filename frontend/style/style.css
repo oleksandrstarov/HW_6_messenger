@@ -9,7 +9,7 @@ html{
 }
 
 body {
-    background-color: lightgary;
+    
     font-family: Comic Sans, Comic Sans MS, cursive, tahoma;
     margin: 15px;
     height: 100%;
@@ -62,8 +62,25 @@ li{
     min-height: 220px;
 }
 .all-comments{
+    position:absolute;
     overflow-y: auto;
-    height: 90%;
+    width: 100%;
+    top: 40px;
+    bottom: 50px;
+}
+.notification-text{
+    position:absolute;
+    padding-left: 5%;
+    width: 100%;
+    color:gray;
+    bottom: 45px;
+}
+
+.load-animation{
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    vertical-align: middle;
 }
 
 .panel{
@@ -94,12 +111,26 @@ li{
     border-radius: 4px;
 }
 
+.connected-users-panel{
+    position:absolute;
+    float: right;
+    right: 5px;
+    top: 240px;
+    width: 250px;
+    bottom: 10px;
+}
 .btn-block{
     margin-top: 10px;
 }
 
 p.user-name{
     color:red;
+    margin: 0;
+    float: left;
+}
+
+p.user-name.current-user{
+    color:#337ab7;
     margin: 0;
     float: left;
 }
@@ -115,5 +146,18 @@ p.message-content{
     margin: 0;
     color: darkgray;
     clear:both;
+}
+
+
+[live-user]{
+    color: lightgreen;
+}
+
+[live-guest]{
+    color: gray;
+}
+
+.users-list{
+    margin-left: 15px;
 }
 
