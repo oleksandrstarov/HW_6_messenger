@@ -9,7 +9,9 @@ function Messenger(){
     $application.appRenderer.messageForm.addEventListener('submit', this.emitMessage.bind(this));
     $application.appRenderer.messageField.addEventListener('keypress', this.onUserTyping
                                                     .bind(this));
-    
+    window.onunload = function(){
+        this.socket.emit('disconnect', {user: $application.user});
+    };
 }
 
 Messenger.prototype.handleChatMessage = function(messageObject){
@@ -56,6 +58,7 @@ Messenger.prototype.processUsersData = function(data){
 };
 
 Messenger.prototype.updateLiveList = function(data){
+    
     data = data.liveUsers;
     $application.appRenderer.updateLiveUsers(data);
 };

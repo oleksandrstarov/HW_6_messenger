@@ -35,6 +35,7 @@ h1{
     width: 100%;
 }
 
+
 #messages { 
     list-style-type: none; 
     margin: 0; 
@@ -42,15 +43,20 @@ h1{
 }
 
 #messages li { 
-    padding: 5px 10px; 
+    padding: 5px 10px;
+    background-color: white;
+
+
 }
 
 #messages li:nth-child(odd) { 
-    background: #eee;
+    background-color: #eee;
+
 }
 
 li{
     border-radius: 5px;
+    
 }
 
 .chat-window{
@@ -159,5 +165,10 @@ p.message-content{
 
 .users-list{
     margin-left: 15px;
+    height: 100%;
+    overflow-y: auto;
 }
 
+.connected-users-panel{
+    min-height: 200px;
+}

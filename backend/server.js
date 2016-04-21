@@ -33,7 +33,7 @@ app.get('/getMessages', function(req, res){
     findMessages(function(result){
        setTimeout(function() {
          res.send(result);
-       }, 2000);
+       }, 1200);
         
     });
 });
@@ -42,15 +42,19 @@ app.get('/getUsers', function(req, res){
     res.send(null);
 });
 
-var clients =[];
+
+var connectedClients =[];
 
 io.sockets.on('connection', function(socket){
   if(!socket.userName){
     socket.userName = 'Guest';
   }
-  clients.push(socket.userName);
+  connectedClients = Object.keys(io.sockets.connected).map(function (key) {return io.sockets.connected[key]})
+  console.log(connectedClients[0].userName);
+  console.log(Object.keys(io.sockets.connected).length);
   
-  io.emit('live users', {liveUsers:clients});
+  
+  io.emit('live users', {liveUsers: getLiveUsersArray(connectedClients)});
   
   socket.on('chat message', function(messageObject){
    
@@ -61,11 +65,11 @@ io.sockets.on('connection', function(socket){
   });
   
   socket.on('disconnect', function(){
-    var index = clients.indexOf(socket.userName);     
+    var index = connectedClients.indexOf(socket);     
     if(index > -1){
-      clients.splice(index, 1);
+      connectedClients.splice(index, 1);
     }
-    io.emit('live users', {liveUsers:clients});
+    io.emit('live users', {liveUsers: getLiveUsersArray(connectedClients)});
   });
   
    socket.on('typing', function(userData){
@@ -73,15 +77,21 @@ io.sockets.on('connection', function(socket){
   });
   
   socket.on('user login', function(userData){
-    var index = clients.indexOf(socket.userName);
-    if(index > -1){
-      clients[index] = userData.user;
-    }
+    
     socket.userName = userData.user;
     
-    io.emit('live users', {liveUsers:clients});
+    io.emit('live users', {liveUsers: getLiveUsersArray(connectedClients)});
   });
 });
+
+function getLiveUsersArray(connectedClients){
+  var array = [];
+  for(var i=0; i<connectedClients.length; i++){
+    array.push(connectedClients[i].userName);
+  }
+  return array;
+}
+
 
 
 

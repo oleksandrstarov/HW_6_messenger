@@ -1,10 +1,34 @@
 //set up  echo 'mongod --bind_ip=$IP --dbpath=data --nojournal --rest "$@"' > mongod
 var dbClient = require('mongodb').MongoClient,
     assert = require('assert');
-    
+
+
+/*MongoDB 2.4 database added.  Please make note of these credentials:
+
+   Root User:     admin
+   Root Password: Nvl82yPe3lgr
+   Database Name: messenger
+
+Connection URL: mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/*/
+
+
+   
 var url = 'mongodb://localhost:27017/messenger';
 
+process.env.OPENSHIFT_MONGODB_DB_URL
+
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+    url = process.env.OPENSHIFT_MONGODB_DB_URL + 'messenger';
+}
+/*if(process.env.OPENSHIFT_MONGODB_DB_HOST && process.env.OPENSHIFT_MONGODB_DB_PORT){
+   url = 'mongodb://' + process.env.OPENSHIFT_MONGODB_DB_HOST+':'+process.env.OPENSHIFT_MONGODB_DB_PORT+'/messenger';
+}*/
+
+console.log('url ' +url);
 //messages({room:room, messages:[{user:user, message:message},{...}]})
+
+
+
 
 
 module.exports.findMessages = function(room, callback){
