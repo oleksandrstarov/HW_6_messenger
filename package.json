@@ -1,0 +1,33 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "Simple chat service",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oleksandrstarov/HW_6_messenger.git"
+  },
+  "keywords": [
+    "chat",
+    "live",
+    "socket"
+  ],
+  "author": "OS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oleksandrstarov/HW_6_messenger/issues"
+  },
+  "homepage": "https://github.com/oleksandrstarov/HW_6_messenger#readme",
+  "dependencies": {
+    "assert": "^1.3.0",
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.16",
+    "morgan": "^1.7.0",
+    "socket.io": "^1.4.5"
+  }
+}
